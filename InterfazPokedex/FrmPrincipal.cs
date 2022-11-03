@@ -54,7 +54,7 @@ namespace InterfazPokedex
                 this.poke = p.Leer(null, id);
             }
             else { this.poke = p.Leer(txtBusqueda.Text, null); }
-            if (this.poke is null) { MessageBox.Show("No existe el regist  ro!"); }
+            if (this.poke is null) { MessageBox.Show("No existe el registro!"); }
             else
             {
                 ManejadorPantalla();
@@ -118,7 +118,6 @@ namespace InterfazPokedex
             FrmSerializacion frmserial = new FrmSerializacion(poke);
             frmserial.ShowDialog();
         }
-
         private void ManejadorPantalla() {
             if (this.poke is null)
             {
@@ -150,7 +149,6 @@ namespace InterfazPokedex
             else { this.poke = null; }
             ManejadorPantalla();
         }
-
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             this.poke = null;
