@@ -62,14 +62,8 @@ namespace InterfazPokedex
         }
         private void btnPorEntrenador_Click(object sender, EventArgs e)
         {
-            FrmFiltro frmFiltro = new FrmFiltro(PokemonDAO.Filtro.entrenador);
-            frmFiltro.ShowDialog();
-            btnAnterior.Enabled = true;
-            btnSiguiente.Enabled = true;
-            if(FrmPrincipal.equipo.Count()>0)
-            {
-                this.poke = FrmPrincipal.equipo[index];
-            } ManejadorPantalla();
+            index = 0;
+            LanzarForm(PokemonDAO.Filtro.entrenador);
         }
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
@@ -90,39 +84,21 @@ namespace InterfazPokedex
             }
             ManejadorPantalla();
         }
-
         private void btnPorTipo_Click(object sender, EventArgs e)
         {
-            FrmFiltro frmFiltro = new FrmFiltro(PokemonDAO.Filtro.tipo);
-            frmFiltro.ShowDialog();
-            btnAnterior.Enabled = true;
-            btnSiguiente.Enabled = true;
-            if (FrmPrincipal.equipo.Count() > 0)
-            {
-                this.poke = FrmPrincipal.equipo[index];
-            } else { this.poke = null; }
-            ManejadorPantalla();
+            index = 0;
+            LanzarForm(PokemonDAO.Filtro.tipo);
         }
-
         private void btnPorRango_Click(object sender, EventArgs e)
         {
-            FrmFiltro frmFiltro = new FrmFiltro(PokemonDAO.Filtro.rango);
-            frmFiltro.ShowDialog();
-            btnAnterior.Enabled = true;
-            btnSiguiente.Enabled = true;
-            if (FrmPrincipal.equipo.Count() > 0)
-            {
-                this.poke = FrmPrincipal.equipo[index];
-            }
-            else { this.poke = null; }
-            ManejadorPantalla();
+            index = 0;
+            LanzarForm(PokemonDAO.Filtro.rango);
         }
-
         private void btnPersonalizada_Click(object sender, EventArgs e)
         {
-  
+            index = 0;
+            LanzarForm(PokemonDAO.Filtro.personalizado);
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             PokemonDAO p = new PokemonDAO();
@@ -139,7 +115,8 @@ namespace InterfazPokedex
         }
         private void btnSerializacion_Click(object sender, EventArgs e)
         {
-            
+            FrmSerializacion frmserial = new FrmSerializacion(poke);
+            frmserial.ShowDialog();
         }
 
         private void ManejadorPantalla() {
@@ -159,6 +136,27 @@ namespace InterfazPokedex
                 picPokemon.BackgroundImageLayout = ImageLayout.Stretch;
                 picPokemon.BackgroundImage = Image.FromFile(this.poke.UrlImagen);
             }
+        }
+        private void LanzarForm(PokemonDAO.Filtro f)
+        {
+            FrmFiltro frmFiltro = new FrmFiltro(f);
+            frmFiltro.ShowDialog();
+            btnAnterior.Enabled = true;
+            btnSiguiente.Enabled = true;
+            if (FrmPrincipal.equipo.Count() > 0)
+            {
+                this.poke = FrmPrincipal.equipo[index];
+            }
+            else { this.poke = null; }
+            ManejadorPantalla();
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            this.poke = null;
+            equipo = new List<Pokemon>();
+            ManejadorPantalla();
+            txtBusqueda.Text = "";
         }
     }
 }

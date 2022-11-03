@@ -33,6 +33,7 @@
             this.cmbFiltro = new System.Windows.Forms.ComboBox();
             this.nudMin = new System.Windows.Forms.NumericUpDown();
             this.nudMax = new System.Windows.Forms.NumericUpDown();
+            this.rtbQuery = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMax)).BeginInit();
             this.SuspendLayout();
@@ -74,12 +75,21 @@
             this.nudMax.Size = new System.Drawing.Size(103, 31);
             this.nudMax.TabIndex = 61;
             // 
+            // rtbQuery
+            // 
+            this.rtbQuery.Location = new System.Drawing.Point(12, 12);
+            this.rtbQuery.Name = "rtbQuery";
+            this.rtbQuery.Size = new System.Drawing.Size(379, 130);
+            this.rtbQuery.TabIndex = 62;
+            this.rtbQuery.Text = "";
+            // 
             // FrmFiltro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Red;
             this.ClientSize = new System.Drawing.Size(403, 288);
+            this.Controls.Add(this.rtbQuery);
             this.Controls.Add(this.nudMax);
             this.Controls.Add(this.nudMin);
             this.Controls.Add(this.cmbFiltro);
@@ -102,5 +112,6 @@
         private System.Windows.Forms.ComboBox cmbFiltro;
         private System.Windows.Forms.NumericUpDown nudMin;
         private System.Windows.Forms.NumericUpDown nudMax;
+        private System.Windows.Forms.RichTextBox rtbQuery;
     }
 }

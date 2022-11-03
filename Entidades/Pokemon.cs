@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Text;
+using System.Xml.Serialization;
 
 namespace Entidades
 {
+    [XmlInclude(typeof(Pokemon))]
     public class Pokemon
     {
         private int id;
@@ -10,6 +13,7 @@ namespace Entidades
         private string entrenador;
         private string urlImagen;
 
+        public Pokemon() { }
         public Pokemon(int id, string nombre, string entrenador)
         {
             this.id = id;//Los pokemones no pueden tener ID repetidas, elegir un lugar donde validar ese dato.!!! FALTA!!!
@@ -61,6 +65,16 @@ namespace Entidades
                 cont++;
             }
             return 0;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"id: {this.Id}");
+            sb.AppendLine($"nombre: {this.Nombre}");
+            sb.AppendLine($"entrenador: {this.Entrenador}");
+            sb.AppendLine($"tipo: {ObtenerTipoDescripcion(this.Tipo)}");
+            return sb.ToString();
         }
     }
 }

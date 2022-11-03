@@ -6,7 +6,7 @@ namespace Entidades
 {
     public class PokemonDAO:ManejadorDB, iCRUDInterface<Pokemon>
     {
-        public enum Filtro { entrenador, tipo, rango};
+        public enum Filtro { entrenador, tipo, rango, personalizado };
         public bool Guardar(Pokemon p)
         {
             string comando = "INSERT INTO dbo.Pokemon " +
@@ -29,19 +29,20 @@ namespace Entidades
 
             return Ejecutar();
         }
-        public List<Pokemon> LeerConFiltro(string criterio, int min, int max, PokemonDAO.Filtro f)
+        public List<Pokemon> LeerConFiltro(string auxQuery, string criterio, int min, int max, PokemonDAO.Filtro f)
         {
             List<Pokemon> l = new List<Pokemon>();
             Pokemon item = null;
             string query = "";
             if (f == PokemonDAO.Filtro.entrenador) { 
                 query = $"SELECT * FROM dbo.Pokemon WHERE entrenador = '{criterio}'"; 
-            }
-            else if (f == PokemonDAO.Filtro.tipo) {
+            } else if (f == PokemonDAO.Filtro.tipo) {
                 int tipo = Pokemon.ObtenerTipoIndice(criterio);
                 query = $"SELECT * FROM dbo.Pokemon WHERE tipo = '{tipo}'";
-            } else {
+            } else if (f == PokemonDAO.Filtro.rango) {
                 query = $"SELECT * FROM dbo.Pokemon WHERE id BETWEEN {min} AND {max}";
+            } else {
+                query = auxQuery;
             }
             
             Comando.Parameters.Clear();
