@@ -1,0 +1,20 @@
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.csproj.AssemblyReference.cache
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.AssemblyInfoInputs.cache
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.AssemblyInfo.cs
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\bin\Debug\netcoreapp3.1\Entidades.deps.json
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\bin\Debug\netcoreapp3.1\Entidades.dll
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\bin\Debug\netcoreapp3.1\Entidades.pdb
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.dll
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\UTN\labo-2-Ejercicios\Clase Sql\C02 - La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.pdb
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\bin\Debug\netcoreapp3.1\Entidades.deps.json
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\bin\Debug\netcoreapp3.1\Entidades.dll
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\bin\Debug\netcoreapp3.1\Entidades.pdb
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.csproj.AssemblyReference.cache
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.AssemblyInfoInputs.cache
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.AssemblyInfo.cs
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.dll
+C:\Users\L54556\OneDrive - Kimberly-Clark\Desktop\DANIEL\La Pokedex\Entidades\obj\Debug\netcoreapp3.1\Entidades.pdb
