@@ -62,7 +62,7 @@ namespace InterfazPokedex
         }
         private void btnPorEntrenador_Click(object sender, EventArgs e)
         {
-            FrmFiltro frmFiltro = new FrmFiltro();
+            FrmFiltro frmFiltro = new FrmFiltro(PokemonDAO.Filtro.entrenador);
             frmFiltro.ShowDialog();
             btnAnterior.Enabled = true;
             btnSiguiente.Enabled = true;
@@ -93,12 +93,29 @@ namespace InterfazPokedex
 
         private void btnPorTipo_Click(object sender, EventArgs e)
         {
-           
+            FrmFiltro frmFiltro = new FrmFiltro(PokemonDAO.Filtro.tipo);
+            frmFiltro.ShowDialog();
+            btnAnterior.Enabled = true;
+            btnSiguiente.Enabled = true;
+            if (FrmPrincipal.equipo.Count() > 0)
+            {
+                this.poke = FrmPrincipal.equipo[index];
+            } else { this.poke = null; }
+            ManejadorPantalla();
         }
 
         private void btnPorRango_Click(object sender, EventArgs e)
         {
-  
+            FrmFiltro frmFiltro = new FrmFiltro(PokemonDAO.Filtro.rango);
+            frmFiltro.ShowDialog();
+            btnAnterior.Enabled = true;
+            btnSiguiente.Enabled = true;
+            if (FrmPrincipal.equipo.Count() > 0)
+            {
+                this.poke = FrmPrincipal.equipo[index];
+            }
+            else { this.poke = null; }
+            ManejadorPantalla();
         }
 
         private void btnPersonalizada_Click(object sender, EventArgs e)
@@ -137,7 +154,7 @@ namespace InterfazPokedex
             {
                 lblIdTexto.Text = "ID: " + this.poke.Id.ToString();
                 lblNombre.Text = "Nombre: " + this.poke.Nombre;
-                lblTipo.Text = "Tipo: " + this.poke.obtenerTipo(this.poke.Tipo);
+                lblTipo.Text = "Tipo: " + Pokemon.ObtenerTipoDescripcion(this.poke.Tipo);
                 lblEntrenadorPokemon.Text = "Entrenador: " + this.poke.Entrenador;
                 picPokemon.BackgroundImageLayout = ImageLayout.Stretch;
                 picPokemon.BackgroundImage = Image.FromFile(this.poke.UrlImagen);

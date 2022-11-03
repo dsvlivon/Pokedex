@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Entidades
 {
-    public class PokemonDAO:ManejadorDB
+    public class PokemonDAO:ManejadorDB, iCRUDInterface<Pokemon>
     {
+        public enum Filtro { entrenador, tipo, rango};
         public bool Guardar(Pokemon p)
         {
             string comando = "INSERT INTO dbo.Pokemon " +
@@ -13,7 +14,7 @@ namespace Entidades
             //Reader.Close();
             this.Comando.CommandText = comando;
 
-            Comando.Parameters.Clear();//ok
+            Comando.Parameters.Clear();
             int id = p.Id;
             int type = p.Tipo;
             string nombre = p.Nombre;
@@ -28,11 +29,23 @@ namespace Entidades
 
             return Ejecutar();
         }
-        public List<Pokemon> LeerPorEntrenador(string trainer)
+        public List<Pokemon> LeerConFiltro(string criterio, int min, int max, PokemonDAO.Filtro f)
         {
             List<Pokemon> l = new List<Pokemon>();
             Pokemon item = null;
-            Comando.CommandText = $"SELECT * FROM dbo.Pokemon WHERE entrenador = '{trainer}'";
+            string query = "";
+            if (f == PokemonDAO.Filtro.entrenador) { 
+                query = $"SELECT * FROM dbo.Pokemon WHERE entrenador = '{criterio}'"; 
+            }
+            else if (f == PokemonDAO.Filtro.tipo) {
+                int tipo = Pokemon.ObtenerTipoIndice(criterio);
+                query = $"SELECT * FROM dbo.Pokemon WHERE tipo = '{tipo}'";
+            } else {
+                query = $"SELECT * FROM dbo.Pokemon WHERE id BETWEEN {min} AND {max}";
+            }
+            
+            Comando.Parameters.Clear();
+            Comando.CommandText = query;
             try
             {
                 Conexion.Open();
@@ -54,7 +67,7 @@ namespace Entidades
             }
             catch (Exception e)
             {
-                throw new ArchivosException($"ERROR EN  LeerPorEntrenador() - {e.Message} - {e.GetBaseException()}");
+                throw new ArchivosException($"ERROR EN  LeerConFiltro() - {e.Message} - {e.GetBaseException()}");
             }
             finally
             {
@@ -98,36 +111,7 @@ namespace Entidades
                 Reader.Close();
             }
             return item;
-        }
-        //public static bool Modifcar(Persona p)
-        //{
-        //    ManejadorDB.Comando.CommandText = "UPDATE dbo.Persona " +
-        //       $"SET nombre = @nombre, apellido= @apellido WHERE ID = {p.ID}";
-
-        //    ManejadorDB.Comando.Parameters.Clear();
-        //    ManejadorDB.Comando.Parameters.AddWithValue("@nombre", p.Nombre);
-        //    ManejadorDB.Comando.Parameters.AddWithValue("@apellido", p.Apellido);
-
-        //    return ManejadorDB.Ejecutar();
-        //}
-        //public static bool Borrar(int id)
-        //{
-        //    ManejadorDB.Comando.CommandText = "DELETE FROM dbo.Persona WHERE ID = @id";
-        //    try
-        //    {
-        //        ManejadorDB.Comando.Parameters.Clear();
-        //        ManejadorDB.Comando.Parameters.AddWithValue("@id", id);
-        //        return ManejadorDB.Ejecutar();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new ArchivosException($"ERROR EN  ObtenerProductos() - {e.Message} - {e.GetBaseException()}");
-        //    }
-        //    finally
-        //    {
-        //        if (ManejadorDB.Conexion.State == System.Data.ConnectionState.Open) { ManejadorDB.Conexion.Close(); }
-        //    }
-        //}
+        }    
         public bool Borrar(int id)
         {
             Comando.CommandText = "DELETE FROM dbo.Pokemon WHERE ID = @id";
@@ -146,5 +130,66 @@ namespace Entidades
                 if (Conexion.State == System.Data.ConnectionState.Open) { Conexion.Close(); }
             }
         }
+        public bool Modificar(Pokemon p)
+        {
+            //    ManejadorDB.Comando.CommandText = "UPDATE dbo.Persona " +
+            //       $"SET nombre = @nombre, apellido= @apellido WHERE ID = {p.ID}";
+
+            //    ManejadorDB.Comando.Parameters.Clear();
+            //    ManejadorDB.Comando.Parameters.AddWithValue("@nombre", p.Nombre);
+            //    ManejadorDB.Comando.Parameters.AddWithValue("@apellido", p.Apellido);
+
+            //    return ManejadorDB.Ejecutar();
+            //}
+            //public static bool Borrar(int id)
+            //{
+            //    ManejadorDB.Comando.CommandText = "DELETE FROM dbo.Persona WHERE ID = @id";
+            //    try
+            //    {
+            //        ManejadorDB.Comando.Parameters.Clear();
+            //        ManejadorDB.Comando.Parameters.AddWithValue("@id", id);
+            //        return ManejadorDB.Ejecutar();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        throw new ArchivosException($"ERROR EN  ObtenerProductos() - {e.Message} - {e.GetBaseException()}");
+            //    }
+            //    finally
+            //    {
+            //        if (ManejadorDB.Conexion.State == System.Data.ConnectionState.Open) { ManejadorDB.Conexion.Close(); }
+            //    }
+
+
+
+            return false;
+        }
+        public List<String> LeerListaDeEntrenadores()
+        {
+            List<String> l = new List<String>();            
+            Comando.CommandText = $"SELECT DISTINCT entrenador FROM dbo.Pokemon";
+            try
+            {
+                Conexion.Open();
+                Reader = Comando.ExecuteReader();
+                if (Reader.HasRows)
+                {
+                    while (Reader.Read())
+                    {
+                        l.Add(Reader["entrenador"].ToString());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new ArchivosException($"ERROR EN  LeerListaDeEntrenadores() - {e.Message} - {e.GetBaseException()}");
+            }
+            finally
+            {
+                if (Conexion.State == System.Data.ConnectionState.Open) { Conexion.Close(); }
+                Reader.Close();
+            }
+            return l;
+        }
+        
     }
 }

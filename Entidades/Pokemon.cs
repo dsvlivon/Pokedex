@@ -23,7 +23,7 @@ namespace Entidades
         }
         public Pokemon(int id, string nombre, int tipo, string entrenador, string urlImagen):this(id, nombre, entrenador)
         {
-            this.tipo = obtenerTipo(tipo);
+            this.tipo = ObtenerTipoDescripcion(tipo);
             this.urlImagen = reFormatearUrlImagen(urlImagen);
         }
 
@@ -32,14 +32,7 @@ namespace Entidades
         public string Entrenador { get => entrenador; set => entrenador = value; }
         public string UrlImagen { get => urlImagen; set => urlImagen = value; }
         public int Tipo { get {
-                int cont = 1;
-                TipoDAO t = new TipoDAO();
-                foreach (var item in t.Leer())
-                {
-                    if (this.tipo == item) { return cont; }
-                    cont++;
-                }
-                return 0;
+                return Pokemon.ObtenerTipoIndice(this.tipo);
             } 
         }
 
@@ -52,10 +45,22 @@ namespace Entidades
             return ManejadorDB.initialDirectory + pic;
         }
 
-        public string obtenerTipo(int i)
+        public static string ObtenerTipoDescripcion(int i)
         {
             TipoDAO t = new TipoDAO();
             return t.Leer()[i-1];
+        }
+
+        public static int ObtenerTipoIndice(string tipo)
+        {
+            int cont = 1;
+            TipoDAO t = new TipoDAO();
+            foreach (var item in t.Leer())
+            {
+                if (tipo == item) { return cont; }
+                cont++;
+            }
+            return 0;
         }
     }
 }

@@ -15,18 +15,37 @@ namespace InterfazPokedex
     public partial class FrmFiltro : Form
     {
         List<Pokemon> team;
-        public FrmFiltro()
+        public PokemonDAO.Filtro filtro;
+        public FrmFiltro(PokemonDAO.Filtro f)
         {
             InitializeComponent();
-            cmbFiltro.DataSource = new List<String> { "Ash", "Brock", "Misty" };//habria q cambiarlo x una query q traiga los entrenadores q tienen pokemones
+            PokemonDAO p = new PokemonDAO();
             this.team = new List<Pokemon>();
+            filtro = f;
+            if (filtro == PokemonDAO.Filtro.entrenador)
+            {
+                cmbFiltro.Show(); nudMin.Hide(); nudMax.Hide();
+                cmbFiltro.DataSource = p.LeerListaDeEntrenadores();
+            }
+            else if (filtro == PokemonDAO.Filtro.tipo)
+            {
+                cmbFiltro.Show(); nudMin.Hide(); nudMax.Hide();
+                TipoDAO t = new TipoDAO();
+                cmbFiltro.DataSource = t.Leer();
+            }
+            else if (filtro == PokemonDAO.Filtro.rango)
+            {
+                cmbFiltro.Hide(); nudMin.Show(); nudMax.Show();
+            }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            string trainer = cmbFiltro.SelectedItem.ToString();
             PokemonDAO p = new PokemonDAO();
-            team = p.LeerPorEntrenador(trainer);
+            string criterio = ""; 
+            if(cmbFiltro.SelectedItem != null) { criterio = cmbFiltro.SelectedItem.ToString(); }
+            team = p.LeerConFiltro(criterio, (int)nudMin.Value, (int)nudMax.Value, filtro); 
+           
             FrmPrincipal.equipo = team;
             this.Close();
         }
