@@ -1,0 +1,31 @@
+id: 39
+nombre: JigglyPuff
+entrenador: Misty
+tipo: hada
+
+
+id: 54
+nombre: Psyduck
+entrenador: Misty
+tipo: agua
+
+
+id: 117
+nombre: Seadra
+entrenador: Misty
+tipo: agua
+
+
+id: 120
+nombre: Staryu
+entrenador: Misty
+tipo: agua
+
+
+id: 121
+nombre: Starme
+entrenador: Misty
+tipo: agua
+
+
+

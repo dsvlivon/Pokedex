@@ -45,7 +45,36 @@ namespace Entidades
                 }
             }
         }
-
+        public static void SerializarAXml(List<T> lista, string nombre)
+        {
+            XmlTextWriter writer = null;
+            string rutaAbsoluta = ruta + nombre + ".xml";
+            try
+            {
+                writer = new XmlTextWriter(rutaAbsoluta, Encoding.UTF8);
+                XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
+                serializer.Serialize(writer, lista);
+            }
+            catch (ArgumentException ex)
+            {
+                throw ex;
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                throw new ArchivosException("Error: Directorio no encontrado.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new ArchivosException("Error inesperado", ex);
+            }
+            finally
+            {
+                if (writer != null)
+                {
+                    writer.Close();
+                }
+            }
+        }
         public static T DeserializarXml(string ruta)
         {
             XmlTextReader reader = null;
@@ -122,6 +151,36 @@ namespace Entidades
             string rutaAbsoluta = ruta + nombre +".json";
             string jsonString = JsonSerializer.Serialize(objeto);
             try { 
+                File.WriteAllText(rutaAbsoluta, jsonString);
+            }
+            catch (ArgumentException ex)
+            {
+                throw ex;
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                throw new ArchivosException("Error: Directorio no encontrado.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new ArchivosException("Error inesperado", ex);
+            }
+        }
+        public static void SerializeJson(List<T> lista, string nombre)
+        {
+            string rutaAbsoluta = ruta + nombre + ".json";
+            //int i = lista.Count();
+            //string jsonString = "{\n";
+            //foreach (var item in lista)
+            //{
+            //    jsonString = jsonString + JsonSerializer.Serialize(item);
+            //    i--;
+            //    if (i != 0) { jsonString = jsonString + ","; }
+            //}
+            //jsonString = jsonString + "\n}";
+            string jsonString = JsonSerializer.Serialize(lista);
+            try
+            {
                 File.WriteAllText(rutaAbsoluta, jsonString);
             }
             catch (ArgumentException ex)

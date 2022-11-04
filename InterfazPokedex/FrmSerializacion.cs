@@ -26,9 +26,23 @@ namespace InterfazPokedex
             string nombreArchivo = txtNombreArchivo.Text;
             if(txtNombreArchivo.Text != "")
             {
-                if (rdbJSON.Checked == true) { Serializador<Pokemon>.SerializeJson(poke, nombreArchivo); }
-                else if (rdbXML.Checked == true) { Serializador<Pokemon>.SerializarAXml(poke, nombreArchivo); }
-                else if (rdbTXT.Checked == true) { Serializador<Pokemon>.SerializarATxt(poke.ToString(), nombreArchivo); }
+                if (rdbJSON.Checked == true) {
+                    if (FrmPrincipal.equipo.Count() > 0){
+                        Serializador<Pokemon>.SerializeJson(FrmPrincipal.equipo, nombreArchivo);
+                    } else { Serializador<Pokemon>.SerializeJson(poke, nombreArchivo); }
+                }
+                else if (rdbXML.Checked == true) {
+                    if (FrmPrincipal.equipo.Count() > 0)
+                    {
+                        Serializador<Pokemon>.SerializarAXml(FrmPrincipal.equipo, nombreArchivo);
+                    } else { Serializador<Pokemon>.SerializarAXml(poke, nombreArchivo); }
+                }
+                else if (rdbTXT.Checked == true) {
+                    if (FrmPrincipal.equipo.Count() > 0)
+                    {
+                        Serializador<Pokemon>.SerializarATxt(Pokemon.EquipoToString(FrmPrincipal.equipo), nombreArchivo);
+                    } else { Serializador<Pokemon>.SerializarATxt(poke.ToString(), nombreArchivo); }
+                }
             } else { MessageBox.Show("Nombre Inválido... verifique y vuelva a intentar!"); }
             this.Close();
         }

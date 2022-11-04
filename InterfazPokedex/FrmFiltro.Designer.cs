@@ -71,6 +71,11 @@
             // nudMax
             // 
             this.nudMax.Location = new System.Drawing.Point(257, 79);
+            this.nudMax.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
             this.nudMax.Name = "nudMax";
             this.nudMax.Size = new System.Drawing.Size(103, 31);
             this.nudMax.TabIndex = 61;

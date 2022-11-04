@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -74,6 +75,16 @@ namespace Entidades
             sb.AppendLine($"nombre: {this.Nombre}");
             sb.AppendLine($"entrenador: {this.Entrenador}");
             sb.AppendLine($"tipo: {ObtenerTipoDescripcion(this.Tipo)}");
+            return sb.ToString();
+        }
+
+        public static string EquipoToString(List<Pokemon> lista)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in lista)
+            {
+                sb.AppendLine(item.ToString() + "\n");
+            }
             return sb.ToString();
         }
     }
